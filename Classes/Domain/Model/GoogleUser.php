@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_MnGooglePlus_Domain_Model_GoogleUser extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_MnGooglePlus_Domain_Model_GoogleUser extends Tx_Extbase_Domain_Model_FrontendUser {
 
 	/**
 	 * googlePlusId

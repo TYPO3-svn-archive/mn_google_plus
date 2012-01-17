@@ -6,6 +6,22 @@ plugin.tx_mngoogleplus {
 	}
 	persistence {
 		storagePid = {$plugin.tx_mngoogleplus.persistence.storagePid}
+		classes {
+			Tx_Extbase_Domain_Model_FrontendUser {
+				subclasses {
+					Tx_MnGooglePlus_Domain_Model_GoogleUser = Tx_MnGooglePlus_Domain_Model_GoogleUser
+				}
+			}
+			Tx_MnGooglePlus_Domain_Model_GoogleUser {
+				mapping {
+					tableName = fe_users
+					recordType = Tx_MnGooglePlus_Domain_Model_GoogleUser
+                    columns {
+                        googlePlusId.mapOnProperty = google_plus_id
+                    }
+				}
+			}
+		}
 	}
 }
 

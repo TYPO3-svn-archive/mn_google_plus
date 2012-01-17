@@ -93,7 +93,44 @@ $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 				),
 			),
 		),
-		'google_user' => array(
+        'google_user' => Array (		
+			'exclude' => 1,		
+			'label'   => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_user',
+			'config' => Array (
+				'type' => 'select',
+				'foreign_table' => 'fe_users',
+				'foreign_table_where' => "AND fe_users.tx_extbase_type='Tx_MnGooglePlus_Domain_Model_GoogleUser'",
+				'items' => array(
+					array('--none--', 0),
+					),
+				'wizards' => Array(
+		             '_PADDING' => 1,
+		             '_VERTICAL' => 1,
+		             'edit' => Array(
+		                 'type' => 'popup',
+		                 'title' => 'Edit',
+		                 'script' => 'wizard_edit.php',
+		                 'icon' => 'edit2.gif',
+		                 'popup_onlyOpenIfSelected' => 1,
+		                 'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+		             )/*,
+		             'add' => Array(
+		                 'type' => 'script',
+		                 'title' => 'Create new',
+		                 'icon' => 'add.gif',
+		                 'params' => Array(
+		                     'table'=>'fe_users',
+		                     'pid' => '###CURRENT_PID###',
+	                         'setValue' => 'prepend'
+		                 ),
+		                 'script' => 'wizard_add.php',
+		             ),*/
+		         )
+			)
+		),
+        
+        
+		/*'google_user' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_user',
 			'config' => array(
@@ -109,7 +146,7 @@ $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 					'showAllLocalizationLink' => 1
 				),
 			),
-		),
+		),*/
 	),
 );
 ?>

@@ -12,7 +12,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	),
 	// non-cacheable actions
 	array(
-		'GooglePlus' => 'create, update, delete',
+		'GooglePlus' => 'list, show, new, create, edit, update, delete',//'create, update, delete',
 		
 	)
 );

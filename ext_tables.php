@@ -21,33 +21,6 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Google plus');
 
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_mngoogleplus_domain_model_googleuser', 'EXT:mn_google_plus/Resources/Private/Language/locallang_csh_tx_mngoogleplus_domain_model_googleuser.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_mngoogleplus_domain_model_googleuser');
-$TCA['tx_mngoogleplus_domain_model_googleuser'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleuser',
-		'label' => 'google_plus_id',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/GoogleUser.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mngoogleplus_domain_model_googleuser.gif'
-	),
-);
-
 t3lib_extMgm::addLLrefForTCAdescr('tx_mngoogleplus_domain_model_googleplus', 'EXT:mn_google_plus/Resources/Private/Language/locallang_csh_tx_mngoogleplus_domain_model_googleplus.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_mngoogleplus_domain_model_googleplus');
 $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
@@ -74,5 +47,26 @@ $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mngoogleplus_domain_model_googleplus.gif'
 	),
 );
+
+$tempColumns = array (
+    'google_plus_id' => Array (
+        'label' => 'test',
+        //'l10n_mode' => $l10n_mode,
+        'config' => Array (
+            'type' => 'input',
+ 			'size' => '40',
+ 			'max' => '256'
+        )
+    )
+);
+
+t3lib_div::loadTCA('fe_users');
+t3lib_extMgm::addTCAcolumns('fe_users',$tempColumns,1);
+t3lib_extMgm::addToAllTCAtypes('fe_users','google_plus_id;;;;1-1-1');
+
+if (is_array($TCA['fe_users']['columns']['tx_extbase_type'])) {
+	$TCA['fe_users']['types']['Tx_MnGooglePlus_Domain_Model_GoogleUser'] = $TCA['fe_users']['types']['0'];
+	array_push($TCA['fe_users']['columns']['tx_extbase_type']['config']['items'], array('LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:fe_users.tx_extbase_type.Tx_BlogExample_Domain_Model_Administrator', 'Tx_MnGooglePlus_Domain_Model_GoogleUser'));
+}
 
 ?>
