@@ -7,12 +7,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'GooglePlus' => 'list, show, new, create, edit, update, delete',
+		'GooglePlus' => 'list, show',
 		
 	),
 	// non-cacheable actions
 	array(
-		'GooglePlus' => 'list, show, new, create, edit, update, delete',//'create, update, delete',
+		'GooglePlus' => 'list, show',
 		
 	)
 );

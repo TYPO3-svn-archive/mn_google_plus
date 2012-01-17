@@ -10,6 +10,9 @@
 			<label index="tx_mngoogleplus_domain_model_googleuser.google_plus_id">Google Plus Id</label>
 			<label index="tx_mngoogleplus_domain_model_googleplus">Google Plus</label>
 			<label index="tx_mngoogleplus_domain_model_googleplus.google_user">Google User</label>
+            <label index="fe_users.tx_extbase_type.Tx_MnGooglePlus_Domain_Model_GoogleUser">Google user</label>
+            <label index="tx_mngoogleplus_domain_model_googleplus.google_plus_id">Google plus id</label>
+            <label index="tx_mngoogleplus_domain_model_googleplus.google_plus_api_key">Google plus API key</label>
 		</languageKey>
 	</data>
 </T3locallang>

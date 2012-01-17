@@ -5,7 +5,7 @@ CREATE TABLE tx_mngoogleplus_domain_model_googleplus (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-
+    google_plus_api_key varchar(255) DEFAULT '' NOT NULL,
 	google_user int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -35,6 +35,19 @@ CREATE TABLE tx_mngoogleplus_domain_model_googleplus (
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
 	KEY language (l10n_parent,sys_language_uid)
+);
+
+#
+# Table structure for table 'tx_mngoogleplus_googleplus_googleuser_mm'
+#
+CREATE TABLE tx_mngoogleplus_googleplus_googleuser_mm (
+	uid_local int(10) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(10) unsigned DEFAULT '0' NOT NULL,
+	sorting int(10) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(10) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );
 
 #

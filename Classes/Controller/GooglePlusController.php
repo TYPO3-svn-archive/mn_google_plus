@@ -58,6 +58,8 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	 */
 	public function listAction() {
 		$googlePluses = $this->googlePlusRepository->findAll();
+        print_r($googlePluses);
+        exit;
 		$this->view->assign('googlePluses', $googlePluses);
 	}
 
@@ -69,63 +71,6 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	 */
 	public function showAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $googlePlus) {
 		$this->view->assign('googlePlus', $googlePlus);
-	}
-
-	/**
-	 * action new
-	 *
-	 * @param $newGooglePlus
-	 * @dontvalidate $newGooglePlus
-	 * @return void
-	 */
-	public function newAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $newGooglePlus = NULL) {
-		$this->view->assign('newGooglePlus', $newGooglePlus);
-	}
-
-	/**
-	 * action create
-	 *
-	 * @param $newGooglePlus
-	 * @return void
-	 */
-	public function createAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $newGooglePlus) {
-		$this->googlePlusRepository->add($newGooglePlus);
-		$this->flashMessageContainer->add('Your new GooglePlus was created.');
-		$this->redirect('list');
-	}
-
-	/**
-	 * action edit
-	 *
-	 * @param $googlePlus
-	 * @return void
-	 */
-	public function editAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $googlePlus) {
-		$this->view->assign('googlePlus', $googlePlus);
-	}
-
-	/**
-	 * action update
-	 *
-	 * @param $googlePlus
-	 * @return void
-	 */
-	public function updateAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $googlePlus) {
-		$this->googlePlusRepository->update($googlePlus);
-		$this->flashMessageContainer->add('Your GooglePlus was updated.');
-		$this->redirect('list');
-	}
-
-	/**
-	 * action delete
-	 *
-	 * @param $googlePlus
-	 * @return void
-	 */
-	public function deleteAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $googlePlus) {
-		$this->googlePlusRepository->remove($googlePlus);
-		$this->flashMessageContainer->add('Your GooglePlus was removed.');
-		$this->redirect('list');
 	}
 
 }

@@ -34,10 +34,19 @@
  */
 class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_AbstractEntity {
 
+    /**
+	 * googlePlusApiKey
+     * 
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $googlePlusApiKey;
+
 	/**
 	 * googleUser
 	 *
-	 * @var Tx_MnGooglePlus_Domain_Model_GoogleUser
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_MnGooglePlus_Domain_Model_GoogleUser>
+     * @lazy
 	 */
 	protected $googleUser;
 
@@ -47,13 +56,32 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	 * @return void
 	 */
 	public function __construct() {
+        $this->googleUser = new Tx_Extbase_Persistence_ObjectStorage();
+	}
 
+    /**
+	 * Returns the googlePlusApiKey
+	 *
+	 * @return string $googlePlusApiKey
+	 */
+	public function getGooglePlusApiKey() {
+		return $this->googlePlusApiKey;
+	}
+
+	/**
+	 * Sets the googlePlusApiKey
+	 *
+	 * @param string $googlePlusApiKey
+	 * @return void
+	 */
+	public function setGooglePlusApiKey($googlePlusApiKey) {
+		$this->googlePlusApiKey = $googlePlusApiKey;
 	}
 
 	/**
 	 * Returns the googleUser
 	 *
-	 * @return Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser
+	 * @return An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_MnGooglePlus_Domain_Model_GoogleUser
 	 */
 	public function getGoogleUser() {
 		return $this->googleUser;
@@ -62,11 +90,31 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	/**
 	 * Sets the googleUser
 	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $comments An Object Storage of related user instances
+	 * @return void
+	 */
+	public function setGoogleUser(Tx_Extbase_Persistence_ObjectStorage $googleUser) {
+		$this->googleUser = $googleUser;
+	}
+    
+    /**
+	 * Adds a user to the repository
+	 *
 	 * @param Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser
 	 * @return void
 	 */
-	public function setGoogleUser(Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser) {
-		$this->googleUser = $googleUser;
+	public function addGoogleUser(Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser) {
+		$this->googleUser->attach($googleUser);
+	}
+    
+	/**
+	 * Removes a user from repository
+	 *
+	 * @param Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser
+	 * @return void
+	 */
+	public function removeGoogleUser(Tx_MnGooglePlus_Domain_Model_GoogleUser $googleUser) {
+		$this->googleUser->detach($googleUser);
 	}
 
 }

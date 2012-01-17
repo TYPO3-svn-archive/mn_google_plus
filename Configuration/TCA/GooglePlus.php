@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 	'ctrl' => $TCA['tx_mngoogleplus_domain_model_googleplus']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, google_user',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, google_plus_api_key, google_user',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, google_user,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, google_plus_api_key, google_user,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -93,60 +93,36 @@ $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 				),
 			),
 		),
-        'google_user' => Array (		
-			'exclude' => 1,		
-			'label'   => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_user',
-			'config' => Array (
-				'type' => 'select',
-				'foreign_table' => 'fe_users',
-				'foreign_table_where' => "AND fe_users.tx_extbase_type='Tx_MnGooglePlus_Domain_Model_GoogleUser'",
-				'items' => array(
-					array('--none--', 0),
-					),
-				'wizards' => Array(
-		             '_PADDING' => 1,
-		             '_VERTICAL' => 1,
-		             'edit' => Array(
-		                 'type' => 'popup',
-		                 'title' => 'Edit',
-		                 'script' => 'wizard_edit.php',
-		                 'icon' => 'edit2.gif',
-		                 'popup_onlyOpenIfSelected' => 1,
-		                 'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-		             )/*,
-		             'add' => Array(
-		                 'type' => 'script',
-		                 'title' => 'Create new',
-		                 'icon' => 'add.gif',
-		                 'params' => Array(
-		                     'table'=>'fe_users',
-		                     'pid' => '###CURRENT_PID###',
-	                         'setValue' => 'prepend'
-		                 ),
-		                 'script' => 'wizard_add.php',
-		             ),*/
-		         )
-			)
-		),
+        'google_plus_api_key' => Array (
+            'label' => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_plus_api_key',
+            'config' => Array (
+                'type' => 'input',
+     			'size' => '40',
+     			'max' => '256'
+            )
+        ),
         
-        
-		/*'google_user' => array(
-			'exclude' => 0,
+        'google_user' => array(
+			'exclude' => 1,
 			'label' => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_user',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_mngoogleplus_domain_model_googleuser',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
-			),
-		),*/
+                'type' => 'group',
+				'internal_type' => 'db',
+					'allowed' => 'fe_users',
+                    'foreign_table_where' => "AND fe_users.tx_extbase_type='Tx_MnGooglePlus_Domain_Model_GoogleUser'",
+					'MM' => 'tx_mngoogleplus_googleplus_googleuser_mm',
+				'size' => '3',
+				'autoSizeMax' => 10,
+				'maxitems' => '9999',
+				'minitems' => '0',
+				'show_thumbs' => '1',
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest'
+					)
+				)
+			)
+		),
 	),
 );
 ?>
