@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Google plus extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_mngoogleplus_domain_model_googleuser">GoogleUser</label>
+			<label index="tx_mngoogleplus_domain_model_googleuser.google_plus_id">googlePlusId</label>
+			<label index="tx_mngoogleplus_domain_model_googleplus">GooglePlus</label>
+			<label index="tx_mngoogleplus_domain_model_googleplus.google_user">googleUser</label>
+		</languageKey>
+	</data>
+</T3locallang>

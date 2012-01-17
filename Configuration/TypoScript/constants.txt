@@ -1,0 +1,14 @@
+plugin.tx_mngoogleplus {
+	view {
+		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:mn_google_plus/Resources/Private/Templates/
+		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:mn_google_plus/Resources/Private/Partials/
+		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:mn_google_plus/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_mngoogleplus//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'mn_google_plus'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_mngoogleplus_domain_model_googleuser">Google User</label>
+			<label index="tx_mngoogleplus_domain_model_googleuser.google_plus_id">Google Plus Id</label>
+			<label index="tx_mngoogleplus_domain_model_googleplus">Google Plus</label>
+			<label index="tx_mngoogleplus_domain_model_googleplus.google_user">Google User</label>
+		</languageKey>
+	</data>
+</T3locallang>

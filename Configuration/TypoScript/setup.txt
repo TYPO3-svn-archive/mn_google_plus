@@ -1,0 +1,30 @@
+plugin.tx_mngoogleplus {
+	view {
+		templateRootPath = {$plugin.tx_mngoogleplus.view.templateRootPath}
+		partialRootPath = {$plugin.tx_mngoogleplus.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_mngoogleplus.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_mngoogleplus.persistence.storagePid}
+	}
+}
+
+plugin.tx_mngoogleplus._CSS_DEFAULT_STYLE (
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-mn-google-plus table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-mn-google-plus table th {
+		font-weight:bold;
+	}
+
+	.tx-mn-google-plus table td {
+		vertical-align:top;
+	}
+)
