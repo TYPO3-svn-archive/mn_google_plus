@@ -58,8 +58,6 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	 */
 	public function listAction() {
 		$googlePluses = $this->googlePlusRepository->findAll();
-        print_r($googlePluses);
-        exit;
 		$this->view->assign('googlePluses', $googlePluses);
 	}
 

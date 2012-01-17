@@ -46,7 +46,6 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	 * googleUser
 	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_MnGooglePlus_Domain_Model_GoogleUser>
-     * @lazy
 	 */
 	protected $googleUser;
 
