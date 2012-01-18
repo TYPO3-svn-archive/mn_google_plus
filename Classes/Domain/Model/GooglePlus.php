@@ -46,6 +46,7 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	 * googleUser
 	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_MnGooglePlus_Domain_Model_GoogleUser>
+     * @lazy
 	 */
 	protected $googleUser;
 
@@ -80,7 +81,7 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	/**
 	 * Returns the googleUser
 	 *
-	 * @return An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_MnGooglePlus_Domain_Model_GoogleUser
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_MnGooglePlus_Domain_Model_GoogleUser> An Tx_Extbase_Persistence_ObjectStorage holding instances of Tx_MnGooglePlus_Domain_Model_GoogleUser
 	 */
 	public function getGoogleUser() {
 		return $this->googleUser;
@@ -89,7 +90,7 @@ class Tx_MnGooglePlus_Domain_Model_GooglePlus extends Tx_Extbase_DomainObject_Ab
 	/**
 	 * Sets the googleUser
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $comments An Object Storage of related user instances
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_MnGooglePlus_Domain_Model_GoogleUser> $googleUser A user to add to the repository
 	 * @return void
 	 */
 	public function setGoogleUser(Tx_Extbase_Persistence_ObjectStorage $googleUser) {

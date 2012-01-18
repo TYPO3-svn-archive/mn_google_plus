@@ -17,15 +17,48 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    <f:for each="{googlePluses}" as="googlePlus">
+	   var apiKey = "{googlePlus.googlePlusApiKey}";
+	</f:for>
+
+    jQuery(document).ready(function() {
+        
+        jQuery.ajax({
+            url: "https://www.googleapis.com/plus/v1/people/116485933646135558609?key=" + apiKey,
+            type: "GET",
+            dataType: "JSONP",
+            crossDomain: true,
+            success: function(data) {
+                //$('.result').html(data);
+                console.log(data);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+        
+    });
+    
+</script>
+
 <table  class="tx_mngoogleplus" >
 	<tr>
 		<th> </th>
 		<th> </th>
 	</tr>
 
+    https://www.googleapis.com/plus/v1/people/
+
 	<f:for each="{googlePluses}" as="googlePlus">
 		<tr>
             <td>{googlePlus.googlePlusApiKey}</td>
+            <f:for each="{googlePlus.googleUser}" as="user">
+                {user.userName}
+            </f:for>
 		</tr>
 	</f:for>
 </table>

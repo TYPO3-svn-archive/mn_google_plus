@@ -106,21 +106,13 @@ $TCA['tx_mngoogleplus_domain_model_googleplus'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:tx_mngoogleplus_domain_model_googleplus.google_user',
 			'config' => array(
-                'type' => 'group',
-				'internal_type' => 'db',
-					'allowed' => 'fe_users',
-                    'foreign_table_where' => "AND fe_users.tx_extbase_type='Tx_MnGooglePlus_Domain_Model_GoogleUser'",
-					'MM' => 'tx_mngoogleplus_googleplus_googleuser_mm',
-				'size' => '3',
-				'autoSizeMax' => 10,
-				'maxitems' => '9999',
-				'minitems' => '0',
-				'show_thumbs' => '1',
-				'wizards' => array(
-					'suggest' => array(
-						'type' => 'suggest'
-					)
-				)
+                'type' => 'select',
+        		'foreign_table' => 'fe_users',
+        		'foreign_table_where' => "AND fe_users.tx_extbase_type='Tx_MnGooglePlus_Domain_Model_GoogleUser'",
+        		'MM' => 'tx_mngoogleplus_googleplus_googleuser_mm',
+        		'size' => 5,
+        		'minitems' => 0,
+        		'maxitems' => 9999
 			)
 		),
 	),
