@@ -1,4 +1,7 @@
 plugin.tx_mngoogleplus {
+    settings {
+        googlePlusApiUrl = https://www.googleapis.com/plus/v1/ 
+    }
 	view {
 		templateRootPath = {$plugin.tx_mngoogleplus.view.templateRootPath}
 		partialRootPath = {$plugin.tx_mngoogleplus.view.partialRootPath}
