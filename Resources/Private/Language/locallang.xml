@@ -10,6 +10,7 @@
 			<label index="tx_mngoogleplus_domain_model_googleuser.google_plus_id">googlePlusId</label>
 			<label index="tx_mngoogleplus_domain_model_googleplus">GooglePlus</label>
 			<label index="tx_mngoogleplus_domain_model_googleplus.google_user">googleUser</label>
+            <label index="error.MustBeLoggedIn">You must be logged in as a frontend user to connect to Google Plus.</label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -57,8 +57,17 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	 * @return void
 	 */
 	public function listAction() {
-		$googlePluses = $this->googlePlusRepository->findAll();
-		$this->view->assign('googlePluses', $googlePluses);
+        if($GLOBALS["TSFE"]->fe_user->user) {
+            $userRepository = new Tx_MnGooglePlus_Domain_Repository_GoogleUserRepository();
+            $loggedInUser = $userRepository->findByUid($GLOBALS["TSFE"]->fe_user->user["uid"]);
+            $this->view->assign("loggedInUser", $loggedInUser);
+            
+            $googlePluses = $this->googlePlusRepository->findAll();
+            $this->view->assign('googlePluses', $googlePluses);    
+        }
+        else {
+            $this->flashMessages->add(Tx_Extbase_Utility_Localization::translate('error.MustBeLoggedIn', 'MnGooglePlus'));    
+        }
 	}
 
 	/**

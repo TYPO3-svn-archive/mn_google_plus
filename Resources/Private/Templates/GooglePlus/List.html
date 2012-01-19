@@ -26,11 +26,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
     </f:for>
     
     var googlePlusApiUrl = "{settings.googlePlusApiUrl}";
+    var myGoogleUserId = "{loggedInUser.googlePlusId}";
+    
+    //116485933646135558609
 
     jQuery(document).ready(function() {
         
         jQuery.ajax({
-            url: googlePlusApiUrl + "people/116485933646135558609?key=" + apiKey,
+            url: googlePlusApiUrl + "people/" + myGoogleUserId + "?key=" + apiKey,
             type: "GET",
             dataType: "JSONP",
             crossDomain: true,
@@ -53,9 +56,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<th> </th>
 	</tr>
 
-    https://www.googleapis.com/plus/v1/people?query=vic%20gundotra&key=AIzaSyDkuXJ7V_9WRLafmNsy3R-j9XKbRzSBqtU
+    <p>https://www.googleapis.com/plus/v1/people?query=vic%20gundotra&key=AIzaSyDkuXJ7V_9WRLafmNsy3R-j9XKbRzSBqtU
 
-    https://www.googleapis.com/plus/v1/people/
+    https://www.googleapis.com/plus/v1/people/</p>
 
 	<f:for each="{googlePluses}" as="googlePlus">
 		<tr>
@@ -65,6 +68,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
             </f:for>
 		</tr>
 	</f:for>
+    
+    
+    
 </table>
 
+<script type="text/javascript">
+    
+</script>
 </f:section>
