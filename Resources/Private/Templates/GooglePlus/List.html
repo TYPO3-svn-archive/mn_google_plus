@@ -13,12 +13,11 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Listing for GooglePlus</h1>
+<link media="all" type="text/css" rel="stylesheet" href="typo3conf/ext/mn_google_plus/Resources/Public/Css/mn_googleplus.css" />
 
 <f:flashMessages />
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
 <script type="text/javascript">
 
     <f:for each="{googlePluses}" as="googlePlus">
@@ -32,48 +31,110 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
     jQuery(document).ready(function() {
         
-        jQuery.ajax({
-            url: googlePlusApiUrl + "people/" + myGoogleUserId + "?key=" + apiKey,
-            type: "GET",
-            dataType: "JSONP",
-            crossDomain: true,
-            success: function(data) {
-                //$('.result').html(data);
-                console.log(data);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
+        if(myGoogleUserId != "") {
+            //Get users profile information
+            jQuery.ajax({
+                url: googlePlusApiUrl + "people/" + myGoogleUserId + "?key=" + apiKey,
+                type: "GET",
+                dataType: "JSONP",
+                crossDomain: true,
+                success: function(data) {
+                    jQuery('#mngoogleplus_userinfo').html(
+                        "<a href='" + data.url + "'>" + data.displayName + "</a><br />" 
+                        + data.gender +  "<br /><img src='" + data.image.url + "' alt='" + data.displayName + "'/>"
+                    );
+                },
+                error: function(err) {
+                    alert(err);
+                }
+            });
+            
+            //Get users recent public activities
+            jQuery.ajax({
+                url: googlePlusApiUrl + "people/" + myGoogleUserId + "/activities/public?key=" + apiKey,
+                type: "GET",
+                dataType: "JSONP",
+                crossDomain: true,
+                success: function(data) {
+                    var items = "";
+                    jQuery.each(data.items, function() {
+                        items +=
+                            "<div class='mngoogleplus_useractivity'><a href='" + this.url + "'>" 
+                            + this.published + " - " + this.title + "</a></div><br />";
+                    });
+                    jQuery("#mngoogleplus_useractivities").html(items);
+                    console.log(data);
+                },
+                error: function(err) {
+                    alert(err);
+                }
+            });
+            
+            //On button search click
+            jQuery("#mngoogleplus_searchbutton").click(function() {
+                var searchValue = jQuery("#mngoogleplus_usersearch").val();
+                if(searchValue != "") {
+                    populateSearchResult(searchValue);
+                }   
+                else {
+                    alert("<f:translate key='search_not_empty' />")
+                }
+            });
+              
+        }
+        
+        function populateSearchResult(searchValue) {
+            jQuery.ajax({
+                url: googlePlusApiUrl + "people?query=" + searchValue + "&nextPageToken=0&key=" + apiKey,
+                type: "GET",
+                dataType: "JSONP",
+                crossDomain: true,
+                success: function(data) {
+                    //If results are found
+                    if(data.items != "") {
+                        var items = "";
+                        jQuery.each(data.items, function() {
+                            items +=
+                                "<div class='mngoogleplus_searchresult'><img src='" + this.image.url + "' alt='" + this.displayName 
+                                + "'/><a href='" + this.url + "'>" + this.displayName + "</a></div><br />";
+                        });
+                        jQuery("#mngoogleplus_searchresults").html(items);    
+                        jQuery("#mngoogleplus_searchresults_next").html(
+                            "<p><input type='hidden' value='" + data.nextPageToken 
+                            + "' /><f:translate key='next_label' /></p>"
+                        );
+                    }
+                    //If no results are found
+                    else {
+                        jQuery("#mngoogleplus_searchresults").html("<b><f:translate key='no_search_results' /></b>");
+                    }
+                    console.log(data);
+                },
+                error: function(err) {
+                    alert(err);
+                }
+            });
+        }
         
     });
     
 </script>
 
-<table  class="tx_mngoogleplus" >
-	<tr>
-		<th> </th>
-		<th> </th>
-	</tr>
 
-    <p>https://www.googleapis.com/plus/v1/people?query=vic%20gundotra&key=AIzaSyDkuXJ7V_9WRLafmNsy3R-j9XKbRzSBqtU
+    <p>https://www.googleapis.com/plus/v1/people?query=vic%20gundotra&key=AIzaSyDkuXJ7V_9WRLafmNsy3R-j9XKbRzSBqtU</p>
+    
+<div id="mngoogleplus_content">
+    <div id="mngoogleplus_userinfo"></div>
+    <br />
+    <div id="mngoogleplus_useractivities"></div>
+    <br />
+    <f:translate key="search_for_people" />
+    <br />
+    <input type="text" id="mngoogleplus_usersearch" />
+    <input type="button" id="mngoogleplus_searchbutton" value="<f:translate key='search_button_label' />" />
+    <div id="mngoogleplus_searchresults"></div>
+    <div id="mngoogleplus_searchresults_prev"></div>
+    <div id="mngoogleplus_searchresults_next"></div>
+</div>
 
-    https://www.googleapis.com/plus/v1/people/</p>
-
-	<f:for each="{googlePluses}" as="googlePlus">
-		<tr>
-            <td>{googlePlus.googlePlusApiKey}</td>
-            <f:for each="{googlePlus.googleUser}" as="user">
-                {user.userName}
-            </f:for>
-		</tr>
-	</f:for>
-    
-    
-    
-</table>
-
-<script type="text/javascript">
-    
-</script>
 </f:section>

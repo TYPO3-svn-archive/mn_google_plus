@@ -11,6 +11,12 @@
 			<label index="tx_mngoogleplus_domain_model_googleplus">GooglePlus</label>
 			<label index="tx_mngoogleplus_domain_model_googleplus.google_user">googleUser</label>
             <label index="error.MustBeLoggedIn">You must be logged in as a frontend user to connect to Google Plus.</label>
+            <label index="search_for_people">Search for people:</label>
+            <label index="search_button_label">Search</label>
+            <label index="search_not_empty">Please insert a search word.</label>
+            <label index="no_search_results">No results was found.</label>
+            <label index="next_label">Next</label>
+            <label index="previous_label">Previous</label>
 		</languageKey>
 	</data>
 </T3locallang>
