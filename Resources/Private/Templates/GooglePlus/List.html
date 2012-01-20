@@ -63,7 +63,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             + this.published + " - " + this.title + "</a></div><br />";
                     });
                     jQuery("#mngoogleplus_useractivities").html(items);
-                    console.log(data);
                 },
                 error: function(err) {
                     alert(err);
@@ -74,18 +73,40 @@ Otherwise your changes will be overwritten the next time you save the extension 
             jQuery("#mngoogleplus_searchbutton").click(function() {
                 var searchValue = jQuery("#mngoogleplus_usersearch").val();
                 if(searchValue != "") {
-                    populateSearchResult(searchValue);
+                    populateSearchResult(searchValue, "");
                 }   
                 else {
                     alert("<f:translate key='search_not_empty' />")
                 }
             });
+            
+            //On next pagination click for search results
+            jQuery("#mngoogleplus_searchresults_next").click(function() {
+                var searchValue = jQuery("#mngoogleplus_usersearch").val();
+                if(searchValue != "") {
+                    populateSearchResult(searchValue, jQuery(this).find(".mngoogleplus_nextpagetoken").val());
+                }   
+                else {
+                    alert("<f:translate key='search_not_empty' />")
+                }        
+            });
+            
+            //On previous pagination click for search results
+            jQuery("#mngoogleplus_searchresults_prev").click(function() {
+                var searchValue = jQuery("#mngoogleplus_usersearch").val();
+                if(searchValue != "") {
+                    //populateSearchResult(searchValue, jQuery(this).find(".mngoogleplus_prevpagetoken").val());
+                }   
+                else {
+                    alert("<f:translate key='search_not_empty' />")
+                }        
+            });
               
         }
         
-        function populateSearchResult(searchValue) {
+        function populateSearchResult(searchValue, nextPageToken) {
             jQuery.ajax({
-                url: googlePlusApiUrl + "people?query=" + searchValue + "&nextPageToken=0&key=" + apiKey,
+                url: googlePlusApiUrl + "people?query=" + searchValue + "&pageToken=" + nextPageToken + "&key=" + apiKey,
                 type: "GET",
                 dataType: "JSONP",
                 crossDomain: true,
@@ -100,8 +121,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         });
                         jQuery("#mngoogleplus_searchresults").html(items);    
                         jQuery("#mngoogleplus_searchresults_next").html(
-                            "<p><input type='hidden' value='" + data.nextPageToken 
+                            "<p><input class='mngoogleplus_nextpagetoken' type='hidden' value='" + data.nextPageToken 
                             + "' /><f:translate key='next_label' /></p>"
+                        );
+                        jQuery("#mngoogleplus_searchresults_prev").html(
+                            "<p><input class='mngoogleplus_previouspagetoken' type='hidden' value='" + data.selfLink 
+                            + "' /><f:translate key='previous_label' /></p>"
                         );
                     }
                     //If no results are found
