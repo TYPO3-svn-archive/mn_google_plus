@@ -1,0 +1,27 @@
+<f:layout name="DefaultBackend" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'indexBackend', controller:'GooglePlus')}" icon="closedok" title="Back" />
+</f:section>
+
+<f:section name="content">
+    <f:if condition="{googlePluses}">
+		<f:then>
+			<p class="bodytext">Here is a list of Google plus API keys:</p>
+			<ul>
+				<f:for each="{googlePluses}" as="googlePlus">
+					<li>
+						<h3>
+							<f:link.action action="show" controller="GooglePlus" arguments="{googlePlus: googlePlus}" title="Show this Google plus">
+								{googlePlus.googlePlusApiKey} (<f:count subject="{googlePlus.googleUser}" />)
+							</f:link.action>
+						</h3>
+					</li>
+				</f:for>
+			</ul>
+		</f:then>
+		<f:else>
+			<p>Not working</p>
+		</f:else>
+    </f:if>
+</f:section>

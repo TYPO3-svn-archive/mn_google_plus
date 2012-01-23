@@ -67,4 +67,26 @@ if (is_array($TCA['fe_users']['columns']['tx_extbase_type'])) {
 	array_push($TCA['fe_users']['columns']['tx_extbase_type']['config']['items'], array('LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:fe_users.tx_extbase_type.Tx_MnGooglePlus_Domain_Model_GoogleUser', 'Tx_MnGooglePlus_Domain_Model_GoogleUser'));
 }
 
+if (TYPO3_MODE === 'BE')	{
+	/**
+	* Registers a Backend Module
+	*/
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',					// Make module a submodule of 'web'
+		'tx_mngoogleplus_m1',	// Submodule key
+		'',						// Position
+		array(																			// An array holding the controller-action-combinations that are accessible
+			'GooglePlus' => 'indexBackend, show',	// The first controller and its first action will be the default
+		),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:mn_google_plus/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+            //'navigationComponentId' => 'typo3-pagetree',
+		)
+	);
+
+}
+
 ?>

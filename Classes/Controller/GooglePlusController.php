@@ -79,6 +79,16 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	public function showAction(Tx_MnGooglePlus_Domain_Model_GooglePlus $googlePlus) {
 		$this->view->assign('googlePlus', $googlePlus);
 	}
+    
+    /**
+	 * action indexBackend
+	 *
+	 * @return void
+	 */
+	public function indexBackendAction() {
+        $googlePluses = $this->googlePlusRepository->findAll();
+        $this->view->assign('googlePluses', $googlePluses);    
+	}
 
 }
 ?>
