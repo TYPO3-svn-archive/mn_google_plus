@@ -86,8 +86,10 @@ class Tx_MnGooglePlus_Controller_GooglePlusController extends Tx_Extbase_MVC_Con
 	 * @return void
 	 */
 	public function indexBackendAction() {
-        $googlePluses = $this->googlePlusRepository->findAll();
-        $this->view->assign('googlePluses', $googlePluses);    
+        $userRepository = new Tx_MnGooglePlus_Domain_Repository_GoogleUserRepository();
+        $this->view->assign("googleUsers", $userRepository->findAll());
+        /*$googlePluses = $this->googlePlusRepository->findAll();
+        $this->view->assign('googlePluses', $googlePluses);*/    
 	}
 
 }

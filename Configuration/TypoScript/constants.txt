@@ -15,11 +15,11 @@ plugin.tx_mngoogleplus {
 
 module.tx_mngoogleplus {
 	view {
-        # cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:mn_google_plus/Resources/Private/Templates/
-		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template partials (FE)
+        # cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:mn_google_plus/Resources/Private/Backend/Templates/
+		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template partials (BE)
 		partialRootPath = EXT:mn_google_plus/Resources/Private/Partials/
-		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:mn_google_plus/Resources/Private/Layouts/
+		# cat=plugin.tx_mngoogleplus/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:mn_google_plus/Resources/Private/Backend/Layouts/
 	}
 }

@@ -1,0 +1,35 @@
+<f:layout name="DefaultBackend" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'indexBackend', controller:'GooglePlus')}" icon="closedok" title="Back" />
+</f:section>
+
+<f:section name="content">
+
+
+<f:be.container
+  pageTitle="foo"
+  enableJumpToUrl="false"
+  enableClickMenu="false"
+  loadPrototype="false"
+  loadScriptaculous="false"
+  loadExtJs="true"
+  loadExtJsTheme="false"
+  extJsAdapter="jQuery"
+  enableExtJsDebug="false">
+
+</f:be.container>
+
+{googleUser.userName}
+
+<script type="text/javascript">
+
+    Ext.onReady(function(){
+
+        alert("test");
+    
+    });
+
+</script>
+
+</f:section>

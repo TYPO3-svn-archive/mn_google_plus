@@ -6,6 +6,7 @@ plugin.tx_mngoogleplus {
 		templateRootPath = {$plugin.tx_mngoogleplus.view.templateRootPath}
 		partialRootPath = {$plugin.tx_mngoogleplus.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_mngoogleplus.view.layoutRootPath}
+        defaultPid = auto
 	}
 	persistence {
 		storagePid = {$plugin.tx_mngoogleplus.persistence.storagePid}

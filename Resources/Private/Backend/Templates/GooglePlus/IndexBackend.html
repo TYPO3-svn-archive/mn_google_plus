@@ -5,15 +5,15 @@
 </f:section>
 
 <f:section name="content">
-    <f:if condition="{googlePluses}">
+    <f:if condition="{googleUsers}">
 		<f:then>
-			<p class="bodytext">Here is a list of Google plus API keys:</p>
+			<p class="bodytext"><f:translate key="google_users_headline" /></p>
 			<ul>
-				<f:for each="{googlePluses}" as="googlePlus">
+				<f:for each="{googleUsers}" as="user">
 					<li>
 						<h3>
-							<f:link.action action="show" controller="GooglePlus" arguments="{googlePlus: googlePlus}" title="Show this Google plus">
-								{googlePlus.googlePlusApiKey} (<f:count subject="{googlePlus.googleUser}" />)
+                            <f:link.action action="show" controller="GoogleUser" arguments="{googleUser: user}" title="Show this Google plus user">
+								{user.userName} (<f:count subject="{user.group}" />)
 							</f:link.action>
 						</h3>
 					</li>
@@ -21,7 +21,7 @@
 			</ul>
 		</f:then>
 		<f:else>
-			<p>Not working</p>
+			<p><f:translate key="no_records_label" /></p>
 		</f:else>
     </f:if>
 </f:section>

@@ -78,12 +78,13 @@ if (TYPO3_MODE === 'BE')	{
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
 			'GooglePlus' => 'indexBackend, show',	// The first controller and its first action will be the default
+            'GoogleUser' => 'show'
 		),
 		array(
 			'access' => 'user,group',
 			'icon'   => 'EXT:mn_google_plus/ext_icon.gif',
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
-            //'navigationComponentId' => 'typo3-pagetree',
+            'navigationComponentId' => 'typo3-pagetree',
 		)
 	);
 

@@ -17,6 +17,9 @@
             <label index="no_search_results">No results was found.</label>
             <label index="next_label">Next</label>
             <label index="previous_label">Previous</label>
+            <label index="no_records_label">No records was found</label>
+            <label index="google_plus_api_keys_headline">Here is a list of Google plus API keys:</label>
+            <label index="google_users_headline">Google users:</label>
 		</languageKey>
 	</data>
 </T3locallang>
