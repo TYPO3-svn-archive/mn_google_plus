@@ -28,5 +28,23 @@
  */
 class Tx_MnGooglePlus_Domain_Repository_GoogleUserRepository extends Tx_Extbase_Domain_Repository_FrontendUserRepository {
 
+    protected $defaultOrderings = array(
+		'crdate' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING,
+		'uid' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING
+	);
+
+    /**
+	 * Finds all the fe_users with a Google User Id set.
+	 *
+	 * @return Tx_Extbase_Persistence_QueryResultInterface The users
+	 */
+	public function findAllGoogleUsersWithId() {
+        $extbaseFrameworkConfiguration = Tx_Extbase_Dispatcher::getExtbaseFrameworkConfiguration();
+		$pidList = implode(', ', t3lib_div::intExplode(',', $extbaseFrameworkConfiguration['persistence']['storagePid']));
+		$query = $this->createQuery();
+		$query->statement('SELECT * from fe_users where google_plus_id != "" AND pid IN ('.$pidList.')');
+		return $query->execute();
+	}
+
 }
 ?>
