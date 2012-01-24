@@ -13,7 +13,7 @@
 					<li>
 						<h3>
                             <f:link.action action="show" controller="GoogleUser" arguments="{googleUser: user}" title="Show this Google plus user">
-								{user.userName} (<f:count subject="{user.group}" />)
+								{user.userName} - {user.GooglePlusId}(<f:count subject="{user.group}" />)
 							</f:link.action>
 						</h3>
 					</li>

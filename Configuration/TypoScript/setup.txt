@@ -19,7 +19,8 @@ plugin.tx_mngoogleplus {
 			Tx_MnGooglePlus_Domain_Model_GoogleUser {
 				mapping {
 					tableName = fe_users
-					recordType = Tx_MnGooglePlus_Domain_Model_GoogleUser
+					#recordType = Tx_MnGooglePlus_Domain_Model_GoogleUser
+                    recordType = Tx_Extbase_Domain_Model_FrontendUser
                     columns {
                         googlePlusId.mapOnProperty = google_plus_id
                     }

@@ -62,10 +62,10 @@ $tempColumns = array (
 t3lib_div::loadTCA('fe_users');
 t3lib_extMgm::addTCAcolumns('fe_users',$tempColumns,1);
 t3lib_extMgm::addToAllTCAtypes('fe_users','google_plus_id;;;;1-1-1');
-if (is_array($TCA['fe_users']['columns']['tx_extbase_type'])) {
+/*if (is_array($TCA['fe_users']['columns']['tx_extbase_type'])) {
 	$TCA['fe_users']['types']['Tx_MnGooglePlus_Domain_Model_GoogleUser'] = $TCA['fe_users']['types']['0'];
 	array_push($TCA['fe_users']['columns']['tx_extbase_type']['config']['items'], array('LLL:EXT:mn_google_plus/Resources/Private/Language/locallang_db.xml:fe_users.tx_extbase_type.Tx_MnGooglePlus_Domain_Model_GoogleUser', 'Tx_MnGooglePlus_Domain_Model_GoogleUser'));
-}
+}*/
 
 if (TYPO3_MODE === 'BE')	{
 	/**

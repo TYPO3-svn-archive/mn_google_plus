@@ -43,7 +43,9 @@ class Tx_MnGooglePlus_Domain_Repository_GoogleUserRepository extends Tx_Extbase_
 		$pidList = implode(', ', t3lib_div::intExplode(',', $extbaseFrameworkConfiguration['persistence']['storagePid']));
 		$query = $this->createQuery();
 		$query->statement('SELECT * from fe_users where google_plus_id != "" AND pid IN ('.$pidList.')');
-		return $query->execute();
+        $result = $query->execute(); 
+ 
+		return $result;
 	}
 
 }
