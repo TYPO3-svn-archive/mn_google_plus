@@ -59,6 +59,9 @@ class Tx_MnGooglePlus_Controller_GoogleUserController extends Tx_Extbase_MVC_Con
 	 */
 	public function showAction(Tx_Extbase_Domain_Model_FrontendUser $googleUser) {
 		$this->view->assign('googleUser', $googleUser);
+        
+        $googlePlusesRepository = new Tx_MnGooglePlus_Domain_Repository_GooglePlusRepository();
+        $this->view->assign('googlePluses', $googlePlusesRepository->findAll());  
 	}
     
 }

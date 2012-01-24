@@ -6,13 +6,26 @@
 
 <f:section name="content">
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $.noConflict();
+    
+    <f:for each="{googlePluses}" as="googlePlus">
+        var apiKey = "{googlePlus.googlePlusApiKey}";
+    </f:for>
+    
+    var googlePlusApiUrl = "{settings.googlePlusApiUrl}";
+    var myGoogleUserId = "{googleUser.googlePlusId}";
+</script>
+
 {googleUser.userName}
 
 <script type="text/javascript">
 
     Ext.onReady(function(){
 
-        alert("test");
+        //alert("test");
     
     });
 
