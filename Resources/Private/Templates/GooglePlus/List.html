@@ -103,7 +103,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
         
         function populateSearchResult(requestUrl, nextPage) {
             jQuery.ajax({
-                url: requestUrl, //googlePlusApiUrl + "people?query=" + searchValue + "&pageToken=" + nextPageToken + "&key=" + apiKey,
+                url: requestUrl,
                 type: "GET",
                 dataType: "JSONP",
                 crossDomain: true,

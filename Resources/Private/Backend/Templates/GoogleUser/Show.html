@@ -6,20 +6,80 @@
 
 <f:section name="content">
 
+<!--<link rel="stylesheet" type="text/css" href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/bootstrap.min.css"/>-->
+<link rel="stylesheet" type="text/css"href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/jquery.jOrgChart.css"/>
+<!--<link rel="stylesheet" type="text/css" href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/custom.css"/>-->
+<!--<link type="text/css" rel="stylesheet" href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/prettify.css" />-->
+
+<script type="text/javascript" src="../typo3conf/ext/mn_google_plus/Resources/Public/JavaScripts/prettify.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="../typo3conf/ext/mn_google_plus/Resources/Public/JavaScripts/jquery.jOrgChart.js"></script>
 
 <script type="text/javascript">
-    $.noConflict();
-    
-    <f:for each="{googlePluses}" as="googlePlus">
-        var apiKey = "{googlePlus.googlePlusApiKey}";
-    </f:for>
+
+<f:for each="{googlePluses}" as="googlePlus">
+    var apiKey = "{googlePlus.googlePlusApiKey}";
+</f:for>
     
     var googlePlusApiUrl = "{settings.googlePlusApiUrl}";
     var myGoogleUserId = "{googleUser.googlePlusId}";
-</script>
+    var items = "";
 
-{googleUser.userName}
+<![CDATA[
+    $.noConflict();
+    
+    jQuery(document).ready(function() {
+        
+        if(myGoogleUserId != "") {
+            //Get users recent public activities
+            var ajax = jQuery.ajax({
+                url: googlePlusApiUrl + "people/" + myGoogleUserId + "/activities/public?key=" + apiKey,
+                type: "GET",
+                dataType: "JSONP",
+                id: "googlePlusAjax",
+                crossDomain: true,
+                success: function(data) {
+                    console.log(data);
+                    jQuery.each(data.items, function() {
+                        var userData = this;
+                        //items += "<li>" + this.actor.displayName;
+                        
+                        //Get users for each activity
+                        jQuery.ajax({
+                            url: this.object.replies.selfLink + "?key=" + apiKey,
+                            type: "GET",
+                            dataType: "JSONP",
+                            crossDomain: true,
+                            success: function(activityData) {
+                                items += "<ul>";
+                                jQuery.each(activityData.items, function() {
+                                    items += "<li>" + this.actor.displayName + "</li>";           
+                                });
+                                items += "</ul>";
+                                console.log(activityData);
+                            },
+                            error: function(err) {
+                                alert(err);
+                            },
+                            complete: function(){
+                                jQuery("#mn_google_plus_org").append("<li>" + userData.actor.displayName + items + "</li>");
+                                jQuery("#mn_google_plus_org").jOrgChart({
+                        			chartElement : '#mn_google_plus_chart'
+                        		});
+                            }
+                        });
+                        //items += "</li>";  
+                    });
+                },
+                error: function(err) {
+                    alert(err);
+                }
+            });
+        }
+        
+    });
+]]>    
+</script>
 
 <script type="text/javascript">
 
@@ -30,5 +90,12 @@
     });
 
 </script>
+
+<ul id="mn_google_plus_org" style="display: none;">
+</ul>
+
+<div id="mn_google_plus_chart" class="orgChart"></div>
+
+{googleUser.userName}
 
 </f:section>
