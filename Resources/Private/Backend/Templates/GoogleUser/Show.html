@@ -47,21 +47,23 @@
                             dataType: "JSONP",
                             crossDomain: true,
                             success: function(activityData) {
-                                items += "<ul>";
-                                jQuery.each(activityData.items, function() {
-                                    items += "<li>" + this.actor.displayName + "</li>";           
-                                });
-                                items += "</ul>";
-                                console.log(activityData);
+                                if(activityData.items.length > 0) {
+                                    items += "<li>" + userData.actor.displayName + "<ul>";
+                                    jQuery.each(activityData.items, function() {
+                                        items += "<li>" + this.object.content + "</li>";           
+                                    });
+                                    items += "</ul></li>";
+                                    console.log(activityData);    
+                                }
                             },
                             error: function(err) {
                                 alert(err);
                             },
-                            complete: function(){
-                                jQuery("#mn_google_plus_org").append("<li>" + userData.actor.displayName + items + "</li>");
+                            complete: function() {
+                                jQuery("#mn_google_plus_org").html(items);
                                 jQuery("#mn_google_plus_org").jOrgChart({
-                        			chartElement : '#mn_google_plus_chart'
-                        		});
+         			    chartElement : '#mn_google_plus_chart'
+                    });
                             }
                         });
                         //items += "</li>";  
@@ -69,9 +71,19 @@
                 },
                 error: function(err) {
                     alert(err);
+                }, 
+                complete: function(data) {
+                    
                 }
             });
+            
+            
+            
         }
+        
+        /*jQuery("#mn_google_plus_org").jOrgChart({
+         			    chartElement : '#mn_google_plus_chart'
+                    });*/
         
     });
 ]]>    
