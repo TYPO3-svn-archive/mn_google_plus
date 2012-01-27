@@ -19,7 +19,9 @@
     
     var googlePlusApiUrl = "{settings.googlePlusApiUrl}";
     var myGoogleUserId = "{googleUser.googlePlusId}";
+    var feUserName = "{googleUser.userName}";
     var items = "";
+    var itemsData = "";
 
 <![CDATA[
     $.noConflict();
@@ -32,13 +34,24 @@
                 url: googlePlusApiUrl + "people/" + myGoogleUserId + "/activities/public?key=" + apiKey,
                 type: "GET",
                 dataType: "JSONP",
-                id: "googlePlusAjax",
                 crossDomain: true,
                 success: function(data) {
-                    console.log(data);
-                    jQuery.each(data.items, function() {
-                        var userData = this;
-                        //items += "<li>" + this.actor.displayName;
+                    //console.log(data);
+                    
+                    itemsData = data;
+
+                },
+                error: function(err) {
+                    alert(err);
+                }, 
+                complete: function() {
+                    
+                    //console.log(itemsData);
+                    
+                    items += "<li>" + feUserName + "<ul>";
+                    jQuery.each(itemsData.items, function() {
+                        
+                        items += "<li>" + this.object.content + "<br />" + this.actor.displayName; 
                         
                         //Get users for each activity
                         jQuery.ajax({
@@ -48,32 +61,28 @@
                             crossDomain: true,
                             success: function(activityData) {
                                 if(activityData.items.length > 0) {
-                                    items += "<li>" + userData.actor.displayName + "<ul>";
+                                    items += "<ul>";
                                     jQuery.each(activityData.items, function() {
                                         items += "<li>" + this.object.content + "</li>";           
                                     });
-                                    items += "</ul></li>";
-                                    console.log(activityData);    
+                                    items += "</ul>";    
                                 }
+                                //console.log(activityData);
                             },
                             error: function(err) {
                                 alert(err);
-                            },
-                            complete: function() {
-                                jQuery("#mn_google_plus_org").html(items);
-                                jQuery("#mn_google_plus_org").jOrgChart({
-         			    chartElement : '#mn_google_plus_chart'
-                    });
                             }
                         });
-                        //items += "</li>";  
+                        
+                        items += "</li>"; 
                     });
-                },
-                error: function(err) {
-                    alert(err);
-                }, 
-                complete: function(data) {
                     
+                    items += "</ul></li>";
+                    
+                    jQuery("#mn_google_plus_org").html(items);
+                    jQuery("#mn_google_plus_org").jOrgChart({
+ 			            chartElement : '#mn_google_plus_chart'
+                    });
                 }
             });
             
@@ -103,7 +112,5 @@
 </ul>
 
 <div id="mn_google_plus_chart" class="orgChart"></div>
-
-{googleUser.userName}
 
 </f:section>
