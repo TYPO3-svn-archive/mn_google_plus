@@ -7,8 +7,8 @@
 <f:section name="content">
 
 <link rel="stylesheet" type="text/css"href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/jquery.jOrgChart.css"/>
+<link rel="stylesheet" type="text/css"href="../typo3conf/ext/mn_google_plus/Resources/Public/Css/jquery.jOrgChart.custom.css"/>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="../typo3conf/ext/mn_google_plus/Resources/Public/JavaScripts/jquery.jOrgChart.js"></script>
 
 <script type="text/javascript">
@@ -24,7 +24,6 @@
     var itemsData = "";
 
 <![CDATA[
-    $.noConflict();
     
     jQuery(document).ready(function() {
         
@@ -36,22 +35,20 @@
                 dataType: "JSONP",
                 crossDomain: true,
                 success: function(data) {
-                    //console.log(data);
-                    
                     itemsData = data;
-
                 },
                 error: function(err) {
                     alert(err);
                 }, 
                 complete: function() {
                     
-                    //console.log(itemsData);
+                    console.log(itemsData);
                     
                     items += "<li>" + feUserName + "<ul>";
                     jQuery.each(itemsData.items, function() {
                         
-                        items += "<li>" + this.object.content + "<br />" + this.actor.displayName; 
+                        items += "<li>" + this.object.content + "<br /><img class='node_padding' src='" + this.actor.image.url + "' alt='" + this.actor.displayName + "' /><br />" 
+                            + this.actor.displayName; 
                         
                         //Get users for each activity
                         jQuery.ajax({
@@ -67,7 +64,6 @@
                                     });
                                     items += "</ul>";    
                                 }
-                                //console.log(activityData);
                             },
                             error: function(err) {
                                 alert(err);
@@ -90,22 +86,8 @@
             
         }
         
-        /*jQuery("#mn_google_plus_org").jOrgChart({
-         			    chartElement : '#mn_google_plus_chart'
-                    });*/
-        
     });
 ]]>    
-</script>
-
-<script type="text/javascript">
-
-    Ext.onReady(function(){
-
-        //alert("test");
-    
-    });
-
 </script>
 
 <ul id="mn_google_plus_org" style="display: none;">

@@ -49,6 +49,10 @@ class Tx_MnGooglePlus_Controller_GoogleUserController extends Tx_Extbase_MVC_Con
 	 */
 	public function injectGoogleUserRepository(Tx_MnGooglePlus_Domain_Repository_GoogleUserRepository $googleUserRepository) {
 		$this->googleUserRepository = $googleUserRepository;
+        
+        //Add jQuery to backend module views
+        $t3Jquery = t3lib_div::makeInstance("tx_t3jquery");
+        $t3Jquery->addJqJS();
 	}
 
 	/**
